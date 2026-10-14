@@ -1,0 +1,70 @@
+LAB 5: STATIC CODE ANALYSIS
+Project: Tournament Scoreboard
+
+ISSUE DOCUMENTATION
+
+1. Issue: Hardcoded password
+   Tool: Bandit
+   Severity: Low
+   Original Line: 6
+   Description: A referee password was stored directly in the source code.
+   Fix: Removed the hardcoded password.
+
+2. Issue: Insecure temporary file creation
+   Tool: Bandit
+   Severity: Medium
+   Original Line: 66
+   Description: tempfile.mktemp() can introduce security risks.
+   Fix: Replaced it with tempfile.NamedTemporaryFile().
+
+3. Issue: Shell command execution
+   Tool: Bandit
+   Severity: High
+   Original Line: 71
+   Description: os.system() with a constructed command could allow command injection.
+   Fix: Removed shell command execution from the helper function.
+
+4. Issue: Mutable default argument
+   Tool: Pylint
+   Original Line: 11
+   Description: Using an empty list as a default argument can cause shared mutable state.
+   Fix: Changed the default to None and initialized the list inside the function.
+
+5. Issue: Invalid naming conventions
+   Tool: Pylint
+   Description: Function names and parameters did not follow snake_case.
+   Fix: Renamed functions and parameters to follow Python naming conventions.
+
+6. Issue: Missing whitespace and indentation
+   Tool: Flake8
+   Description: The original file contained whitespace and formatting violations.
+   Fix: Corrected spacing, indentation, line length, and blank lines.
+
+
+REFLECTION QUESTIONS
+
+1. What is static code analysis?
+
+Static code analysis examines source code without executing it to identify potential bugs, security vulnerabilities, and coding-style violations.
+
+2. What is the purpose of Pylint?
+
+Pylint identifies code-quality issues, naming violations, missing documentation, and potential programming errors.
+
+3. What is the purpose of Bandit?
+
+Bandit examines Python code for common security vulnerabilities and insecure coding patterns.
+
+4. What is the purpose of Flake8?
+
+Flake8 checks Python code for PEP 8 style violations, formatting problems, and related errors.
+
+5. How did static analysis improve this project?
+
+Static analysis helped identify a hardcoded password, insecure temporary-file creation, unsafe command execution, mutable default arguments, naming issues, and formatting violations. Fixing these issues improved code quality and reduced security risks.
+
+6. What were the final analysis results?
+
+Pylint: 10.00/10
+Bandit: No issues identified
+Flake8: No issues reported
